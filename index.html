@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Digital - Azzahra Wahyu Fitriani</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            500: '#102a43',
+                            800: '#0b1b2b',
+                            900: '#030e1a',
+                        },
+                        ocean: {
+                            400: '#38bec9',
+                            500: '#00a8cc',
+                            600: '#0083a0',
+                        }
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'float-slow': 'float 8s ease-in-out infinite',
+                        'float-reverse': 'floatReverse 10s ease-in-out infinite',
+                        'swim-right': 'swimRight 18s linear infinite',
+                        'swim-left': 'swimLeft 22s linear infinite',
+                        'bubble': 'bubbleUp 6s ease-in infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-15px) rotate(3deg)' },
+                        },
+                        floatReverse: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(15px) rotate(-3deg)' },
+                        },
+                        swimRight: {
+                            '0%': { transform: 'translateX(-10%) translateY(0)' },
+                            '50%': { transform: 'translateX(50vw) translateY(-20px)' },
+                            '100%': { transform: 'translateX(105vw) translateY(0)' }
+                        },
+                        swimLeft: {
+                            '0%': { transform: 'translateX(105vw) translateY(0) scaleX(-1)' },
+                            '50%': { transform: 'translateX(50vw) translateY(20px) scaleX(-1)' },
+                            '100%': { transform: 'translateX(-10%) translateY(0) scaleX(-1)' }
+                        },
+                        bubbleUp: {
+                            '0%': { transform: 'translateY(100%) opacity(0.2)', bottom: '0%' },
+                            '50%': { opacity: '0.6' },
+                            '100%': { transform: 'translateY(-100vh) opacity(0)', bottom: '100%' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030e1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00a8cc;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38bec9;
+        }
+        /* Water effect overlay */
+        .ocean-bg {
+            background: linear-gradient(180deg, #030e1a 0%, #0b1b2b 50%, #102a43 100%);
+        }
+    </style>
+</head>
+<body class="bg-navy-900 text-slate-100 overflow-x-hidden relative selection:bg-ocean-500 selection:text-white">
+
+    <!-- Ambient Sea Bubbles Animation Background -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" id="bubble-container">
+        <!-- Floating Sea Creatures SVGs (Minimalist Aquarium Elements) -->
+        <div class="absolute top-[15%] left-0 w-24 h-24 text-ocean-400/20 animate-swim-right">
+            <!-- Dolphin SVG -->
+            <svg viewBox="0 0 64 64" fill="currentColor">
+                <path d="M58,24 C50,20 38,22 28,28 C20,33 10,32 4,28 C2,34 6,40 14,40 C22,40 30,34 38,32 C46,30 52,34 58,40 C58,34 60,28 58,24 Z"/>
+            </svg>
+        </div>
+        
+        <div class="absolute top-[55%] right-0 w-32 h-32 text-slate-400/10 animate-swim-left">
+            <!-- Shark SVG -->
+            <svg viewBox="0 0 64 64" fill="currentColor">
+                <path d="M60,28 C45,20 30,22 18,30 C12,28 6,26 2,28 C8,34 12,38 16,36 C24,42 40,42 52,36 C56,38 60,42 62,44 C62,38 64,32 60,28 Z M32,16 L38,26 L28,26 Z"/>
+            </svg>
+        </div>
+
+        <div class="absolute top-[75%] left-10 w-20 h-20 text-teal-300/15 animate-float-slow">
+            <!-- Sea Turtle SVG -->
+            <svg viewBox="0 0 64 64" fill="currentColor">
+                <circle cx="32" cy="32" r="14"/>
+                <path d="M32,14 C34,8 40,6 44,10 C40,16 36,18 32,18 Z M32,50 C34,56 40,58 44,54 C40,48 36,46 32,46 Z M14,32 C8,34 6,40 10,44 C16,40 18,36 18,32 Z M50,32 C56,34 58,40 54,44 C48,40 46,36 46,32 Z"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-navy-900/80 backdrop-blur-md border-b border-slate-800 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-xl font-bold tracking-wider text-white flex items-center gap-2">
+                <i class="fa-solid font-sharp fa-fish-fins text-ocean-400"></i>
+                <span>AZZAHRA<span class="text-ocean-400">.</span></span>
+            </a>
+            
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menu-btn" class="md:hidden text-slate-300 hover:text-white focus:outline-none">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+
+            <!-- Desktop Menu Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#hero" class="text-slate-300 hover:text-ocean-400 transition-colors">Beranda</a>
+                <a href="#about" class="text-slate-300 hover:text-ocean-400 transition-colors">Tentang Saya</a>
+                <a href="#skills" class="text-slate-300 hover:text-ocean-400 transition-colors">Keahlian</a>
+                <a href="#projects" class="text-slate-300 hover:text-ocean-400 transition-colors">Proyek</a>
+                <a href="#contact" class="px-4 py-2 rounded-full bg-ocean-500 text-white hover:bg-ocean-600 transition-colors shadow-lg shadow-ocean-500/20">Kontak</a>
+            </nav>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-800 border-b border-slate-700 px-6 py-4 space-y-3">
+            <a href="#hero" class="block text-slate-300 hover:text-ocean-400">Beranda</a>
+            <a href="#about" class="block text-slate-300 hover:text-ocean-400">Tentang Saya</a>
+            <a href="#skills" class="block text-slate-300 hover:text-ocean-400">Keahlian</a>
+            <a href="#projects" class="block text-slate-300 hover:text-ocean-400">Proyek</a>
+            <a href="#contact" class="block text-ocean-400 font-semibold">Kontak</a>
+        </div>
+    </header>
+
+    <main class="relative z-10 pt-20">
+
+        <!-- 1. HERO SECTION -->
+        <section id="hero" class="min-h-[calc(100vh-80px)] flex items-center justify-center px-6 py-12 relative overflow-hidden">
+            <div class="max-w-6xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                
+                <!-- Kiri: Title Nama Lengkap & Tombol Follow IG -->
+                <div class="space-y-6 text-center md:text-left order-2 md:order-1">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/80 border border-ocean-500/30 text-ocean-400 text-xs font-semibold tracking-wide">
+                        <i class="fa-solid fa-water"></i> Selamat Datang di Portofolio Saya
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                        Azzahra Wahyu <span class="text-transparent bg-clip-text bg-gradient-to-r from-ocean-400 to-teal-300">Fitriani</span>
+                    </h1>
+                    
+                    <p class="text-slate-300 text-base md:text-lg max-w-lg leading-relaxed font-light">
+                        Siswa MPLB (Manajemen Perkantoran & Layanan Bisnis) di SMK Cyber Media dengan minat kuat di bidang Administrasi Perkantoran dan Produksi Film.
+                    </p>
+                    
+                    <div class="pt-4 flex flex-wrap justify-center md:justify-start gap-4">
+                        <a href="https://instagram.com/309.azzhrwf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium shadow-lg shadow-purple-500/20 transform hover:-translate-y-1 transition-all duration-300">
+                            <i class="fa-brands fa-instagram text-xl"></i>
+                            <span>Ikuti Saya (@309.azzhrwf)</span>
+                        </a>
+                        <a href="#about" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium border border-slate-700 hover:border-slate-600 transition-all duration-300">
+                            <span>Jelajahi Profil</span>
+                            <i class="fa-solid fa-arrow-down text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kanan: Foto Profil -->
+                <div class="flex justify-center order-1 md:order-2">
+                    <div class="relative group">
+                        <!-- Neon Glow Ring Ocean Theme -->
+                        <div class="absolute -inset-1 bg-gradient-to-r from-ocean-400 to-teal-400 rounded-2xl blur-lg opacity-40 group-hover:opacity-75 transition duration-500"></div>
+                        
+                        <!-- Frame Foto Profil -->
+                        <div class="relative w-64 h-80 sm:w-72 sm:h-96 md:w-80 md:h-[420px] bg-navy-800 rounded-2xl overflow-hidden border-2 border-ocean-500/40 shadow-2xl">
+                            <img src="1000232141_430e16.jpg" alt="Foto Azzahra Wahyu Fitriani" class="w-full h-full object-cover object-center transform group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/400x520/0b1b2b/FFFFFF?text=Azzahra+Wahyu+Fitriani'">
+                        </div>
+
+                        <!-- Aquarium Badge Decorative Overlay -->
+                        <div class="absolute -bottom-4 -right-4 bg-navy-800/90 backdrop-blur-md p-3 rounded-xl border border-ocean-500/30 text-xs text-ocean-400 flex items-center gap-2 shadow-lg animate-float-slow">
+                            <i class="fa-solid fa-fish text-lg"></i>
+                            <span class="font-medium text-slate-200">SMK Cyber Media</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 2. ABOUT SECTION -->
+        <section id="about" class="py-20 px-6 bg-navy-800/50 backdrop-blur-sm border-y border-slate-800 relative">
+            <div class="max-w-5xl mx-auto space-y-12">
+                
+                <div class="text-center space-y-3">
+                    <span class="text-ocean-400 text-sm font-semibold tracking-wider uppercase">Mengenal Lebih Dekat</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Tentang Saya</h2>
+                    <div class="w-16 h-1 bg-ocean-500 mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                    <!-- Rekam Jejak Pendidikan & Organisasi SMP -->
+                    <div class="bg-navy-900/80 p-8 rounded-2xl border border-slate-800 shadow-xl space-y-4 hover:border-ocean-500/30 transition-all">
+                        <div class="w-12 h-12 bg-ocean-500/10 rounded-xl flex items-center justify-center text-ocean-400 text-xl font-bold mb-2">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white">Pendidikan Menengah (SMPN 238)</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Semasa menempuh pendidikan di <span class="text-ocean-400 font-medium">SMPN 238</span>, saya merupakan siswa yang aktif dalam berbagai kegiatan ekstrakurikuler serta ajang akademis.
+                        </p>
+                        <div class="pt-2">
+                            <h4 class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-3">Ekstrakurikuler & Kompetisi:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 rounded-lg bg-slate-800 text-xs text-slate-200 border border-slate-700">Karate</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-800 text-xs text-slate-200 border border-slate-700">PMR</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-800 text-xs text-slate-200 border border-slate-700">Paskibra</span>
+                                <span class="px-3 py-1 rounded-lg bg-slate-800 text-xs text-slate-200 border border-slate-700">Pramuka</span>
+                                <span class="px-3 py-1 rounded-lg bg-ocean-500/20 text-xs text-ocean-300 border border-ocean-500/30">Olimpiade Sains IPS</span>
+                                <span class="px-3 py-1 rounded-lg bg-ocean-500/20 text-xs text-ocean-300 border border-ocean-500/30">Olimpiade PKn</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pendidikan Sekarang & Keahlian Sinematografi -->
+                    <div class="bg-navy-900/80 p-8 rounded-2xl border border-slate-800 shadow-xl space-y-4 hover:border-ocean-500/30 transition-all">
+                        <div class="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center text-teal-400 text-xl font-bold mb-2">
+                            <i class="fa-solid fa-clapperboard"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-white">Pendidikan Kejuruan (SMK Cyber Media)</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Saat ini saya melanjutkan studi di <span class="text-teal-300 font-medium">SMK Cyber Media</span> jurusan <span class="text-white font-medium">MPLB (Manajemen Perkantoran & Layanan Bisnis)</span>. Saya aktif di komunitas ekstrakurikuler <span class="text-ocean-400 font-medium">Koficya (Komunitas Film Cyber Media)</span>.
+                        </p>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Memiliki pengalaman teknis dalam produksi film, seperti mengatur <span class="text-slate-100 font-medium">lighting</span>, penataan <span class="text-slate-100 font-medium">properti syuting</span>, serta rutin mengikuti perlombaan film. Saat ini saya juga berfokus mencari tantangan baru untuk menambah pengalaman kerja di bidang Administrasi Perkantoran.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. SKILL SECTION -->
+        <section id="skills" class="py-20 px-6 relative">
+            <div class="max-w-6xl mx-auto space-y-12">
+                
+                <div class="text-center space-y-3">
+                    <span class="text-ocean-400 text-sm font-semibold tracking-wider uppercase">Kemampuan Kerja</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Keahlian & Kompetensi</h2>
+                    <div class="w-16 h-1 bg-ocean-500 mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Advanced Skills -->
+                    <div class="bg-navy-800/80 p-6 rounded-2xl border border-slate-800 hover:border-emerald-500/40 transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Tingkat Lanjut</span>
+                                <i class="fa-solid fa-award text-2xl text-emerald-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-4">Mahir (Advance)</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-3 text-slate-300">
+                                    <i class="fa-solid fa-file-word text-blue-400"></i>
+                                    <span>Microsoft Word</span>
+                                </li>
+                                <li class="flex items-center gap-3 text-slate-300">
+                                    <i class="fa-solid fa-file-powerpoint text-orange-400"></i>
+                                    <span>Microsoft Power Point</span>
+                                </li>
+                                <li class="flex items-center gap-3 text-slate-300">
+                                    <i class="fa-solid fa-file-excel text-emerald-400"></i>
+                                    <span>Microsoft Excel</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-700/50 text-xs text-slate-400">
+                            Penguasaan penuh aplikasi perkantoran utama.
+                        </div>
+                    </div>
+
+                    <!-- Intermediate Skills -->
+                    <div class="bg-navy-800/80 p-6 rounded-2xl border border-slate-800 hover:border-ocean-500/40 transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-ocean-500/10 text-ocean-400 border border-ocean-500/20">Tingkat Menengah</span>
+                                <i class="fa-solid fa-layer-group text-2xl text-ocean-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-4">Menengah (Intermediate)</h3>
+                            <ul class="space-y-3 text-slate-300 text-sm">
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-palette text-pink-400"></i>
+                                    <span>Canva & Canvas</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-video text-purple-400"></i>
+                                    <span>Capcut & Alight Motion</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-envelope-open-text text-teal-400"></i>
+                                    <span>Pengelolaan Surat Masuk/Keluar</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-solid fa-file-signature text-amber-400"></i>
+                                    <span>Pembuatan Kop Surat & Administrasi</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-700/50 text-xs text-slate-400">
+                            Desain kreatif, editing video & keahlian surat menyurat.
+                        </div>
+                    </div>
+
+                    <!-- Basic Skills -->
+                    <div class="bg-navy-800/80 p-6 rounded-2xl border border-slate-800 hover:border-sky-500/40 transition duration-300 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-400 border border-sky-500/20">Tingkat Dasar</span>
+                                <i class="fa-solid fa-code text-2xl text-sky-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-4">Dasar (Basic)</h3>
+                            <ul class="space-y-3 text-slate-300">
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-brands fa-html5 text-orange-500"></i>
+                                    <span>HTML5</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-brands fa-css3-alt text-blue-500"></i>
+                                    <span>CSS3</span>
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <i class="fa-brands fa-js text-yellow-400"></i>
+                                    <span>JavaScript</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-slate-700/50 text-xs text-slate-400">
+                            Pemahaman dasar pembuatan & struktur halaman web.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. PROJECT SECTION -->
+        <section id="projects" class="py-20 px-6 bg-navy-800/30 border-t border-slate-800 relative">
+            <div class="max-w-6xl mx-auto space-y-12">
+                
+                <div class="text-center space-y-3">
+                    <span class="text-ocean-400 text-sm font-semibold tracking-wider uppercase">Hasil Karya</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Portofolio Proyek</h2>
+                    <div class="w-16 h-1 bg-ocean-500 mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <!-- Card Project 1: Aplikasi Restoran -->
+                    <div class="bg-navy-900 rounded-2xl border border-slate-800 overflow-hidden group hover:border-ocean-500/50 transition duration-300 flex flex-col justify-between">
+                        <div class="p-6 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="w-10 h-10 rounded-lg bg-orange-500/10 text-orange-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-utensils"></i>
+                                </div>
+                                <span class="text-xs text-slate-400">Web App</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-ocean-400 transition">Aplikasi Restoran</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Aplikasi manajemen pemesanan menu makanan & minuman restoran yang cepat, praktis, dan interaktif.
+                            </p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="https://share.gemini.google/Pf3BvPiyNUHZ" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-medium text-ocean-400 hover:text-ocean-300 transition">
+                                <span>Lihat Proyek</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Card Project 2: Aplikasi To Do List -->
+                    <div class="bg-navy-900 rounded-2xl border border-slate-800 overflow-hidden group hover:border-ocean-500/50 transition duration-300 flex flex-col justify-between">
+                        <div class="p-6 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-list-check"></i>
+                                </div>
+                                <span class="text-xs text-slate-400">Web App</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-ocean-400 transition">Aplikasi To Do List</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Aplikasi manajemen tugas harian yang membantu mencatat dan memantau progres pekerjaan secara efektif.
+                            </p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="https://share.gemini.google/LdMtThEBLJGT" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-medium text-ocean-400 hover:text-ocean-300 transition">
+                                <span>Lihat Proyek</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Card Project 3: Aplikasi Inventaris -->
+                    <div class="bg-navy-900 rounded-2xl border border-slate-800 overflow-hidden group hover:border-ocean-500/50 transition duration-300 flex flex-col justify-between">
+                        <div class="p-6 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-boxes-stacked"></i>
+                                </div>
+                                <span class="text-xs text-slate-400">Management System</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-ocean-400 transition">Aplikasi Inventaris</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Sistem pencatatan & pengawasan stok barang kantor/sekolah untuk memudahkan efisiensi administrasi.
+                            </p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-medium text-ocean-400 hover:text-ocean-300 transition">
+                                <span>Lihat Proyek</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Card Project 4: Aplikasi Resepsionis -->
+                    <div class="bg-navy-900 rounded-2xl border border-slate-800 overflow-hidden group hover:border-ocean-500/50 transition duration-300 flex flex-col justify-between">
+                        <div class="p-6 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-user-gear"></i>
+                                </div>
+                                <span class="text-xs text-slate-400">Office Web App</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-ocean-400 transition">Aplikasi Resepsionis</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">
+                                Sistem penerimaan tamu digital berbasis web yang terstruktur untuk mendukung kebutuhan administrasi layanan bisnis.
+                            </p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a href="https://share.gemini.google/MTlOW5PnI3Hi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-medium text-ocean-400 hover:text-ocean-300 transition">
+                                <span>Lihat Proyek</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5. CONTACT SECTION -->
+        <section id="contact" class="py-20 px-6 relative">
+            <div class="max-w-5xl mx-auto space-y-12">
+                
+                <div class="text-center space-y-3">
+                    <span class="text-ocean-400 text-sm font-semibold tracking-wider uppercase">Mari Terhubung</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">Hubungi Saya</h2>
+                    <div class="w-16 h-1 bg-ocean-500 mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Card Instagram -->
+                    <a href="https://instagram.com/309.azzhrwf" target="_blank" rel="noopener noreferrer" class="bg-navy-800/80 p-6 rounded-2xl border border-slate-800 hover:border-pink-500/50 hover:bg-navy-800 transition duration-300 text-center space-y-3 group">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition duration-300">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white">Instagram</h3>
+                        <p class="text-ocean-400 font-medium text-sm">@309.azzhrwf</p>
+                    </a>
+
+                    <!-- Card TikTok -->
+                    <a href="https://tiktok.com/@usedbyzraa" target="_blank" rel="noopener noreferrer" class="bg-navy-800/80 p-6 rounded-2xl border border-slate-800 hover:border-slate-400 hover:bg-navy-800 transition duration-300 text-center space-y-3 group">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-slate-900 border border-slate-700 flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition duration-300">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white">TikTok</h3>
+                        <p class="text-ocean-400 font-medium text-sm">@usedbyzraa</p>
+                    </a>
+
+                    <!-- Card WhatsApp -->
+                    <a href="https://wa.me/6285697132096" target="_blank" rel="noopener noreferrer" class="bg-navy-800/80 p-6 rounded-2xl border border-slate-800 hover:border-emerald-500/50 hover:bg-navy-800 transition duration-300 text-center space-y-3 group">
+                        <div class="w-14 h-14 mx-auto rounded-full bg-emerald-600 flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition duration-300">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white">WhatsApp</h3>
+                        <p class="text-ocean-400 font-medium text-sm">0856-9713-2096</p>
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-navy-900 border-t border-slate-800 text-center text-xs text-slate-500 relative z-10">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>&copy; 2026 Azzahra Wahyu Fitriani. Hak Cipta Dilindungi.</p>
+            <div class="flex gap-2 items-center text-ocean-400">
+                <i class="fa-solid fa-water"></i>
+                <span>Tema Navy & Minimalist Aquarium</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Interaktif -->
+    <script>
+        // Toggle Navigasi Menu Mobile
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Efek Gelembung Air Laut Secara Dinamis
+        function createBubbles() {
+            const bubbleContainer = document.getElementById('bubble-container');
+            const bubbleCount = 8;
+
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                const size = Math.random() * 12 + 6; // ukuran gelembung 6px - 18px
+                const posX = Math.random() * 100; // posisi horizontal acak
+                const duration = Math.random() * 6 + 4; // durasi animasi 4s - 10s
+                const delay = Math.random() * 5;
+
+                bubble.className = 'absolute rounded-full bg-ocean-400/20 border border-ocean-400/40 pointer-events-none animate-bubble';
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${posX}%`;
+                bubble.style.animationDuration = `${duration}s`;
+                bubble.style.animationDelay = `${delay}s`;
+
+                bubbleContainer.appendChild(bubble);
+            }
+        }
+
+        window.onload = function() {
+            createBubbles();
+        };
+    </script>
+</body>
+</html>
